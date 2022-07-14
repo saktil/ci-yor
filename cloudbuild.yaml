@@ -1,26 +1,17 @@
 steps:
-- id: 'master'
-  name: 'hashicorp/terraform:1.0.2'
-  entrypoint: 'sh'  
-  args: 
-  - '-c'
-  - | 
-      echo "***********************"
-      echo "master"
-      echo "***********************"
+
+# [START tf-init]
 - id: 'tf init'
   entrypoint: 'sh'
   args: 
   - '-c'
-  - |
+
 
 # [START tf-plan]
 - id: 'tf plan'
-  name: 'hashicorp/terraform:1.0.2'
   entrypoint: 'sh'
   args: 
   - '-c'
-  - | 
 
 
 # [START tf-apply]
@@ -28,4 +19,4 @@ steps:
   entrypoint: 'sh'
   args: 
   - '-c'
-  - | 
+
