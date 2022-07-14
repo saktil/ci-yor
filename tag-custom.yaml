@@ -1,0 +1,17 @@
+tag_groups:
+  - name: ownership # map infrastructure to owner or owning team
+    tags:
+      - name: env
+        value:
+          default: master # environment name would be the name of the feature_branch
+      - name: team_ownership
+        value:
+          default: sre-intern # SRE are the default owning team of cloud resources
+
+      - name: edit
+        value: 
+          default: leo
+
+      - name: upload-to-gcb
+        value:
+          default: cloud-build
