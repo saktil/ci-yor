@@ -1,6 +1,6 @@
 steps:
 - id: 'master'
-  name: 'ec2'
+  name: 'terraform'
   entrypoint: 'sh'  
   args: 
   - '-c'
