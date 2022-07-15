@@ -1,23 +1,33 @@
 steps:
-
-# [START tf-init]
-- id: 'tf init'
+- id: 'tf plan'
   name: 'hashicorp/terraform:1.0.2'
   entrypoint: 'sh'
-  args: 
+  args:
   - '-c'
-
-
-# [START tf-plan]
-- id: 'tf plan'
-  entrypoint: 'sh'
-  args: 
-  - '-c'
-
-
-# [START tf-apply]
-- id: 'tf apply'
-  entrypoint: 'sh'
-  args: 
-  - '-c'
-
+  - |
+      echo "branch $BRANCH_NAME"
+      if [ ! -z "$BRANCH_NAME" -a -d "gcb/environments/$BRANCH_NAME/" ]; then
+        cd terraform/environments/$BRANCH_NAME
+        echo "run init"
+        terraform init
+        echo "run validate"
+        terraform validate
+        echo "run plan"
+        terraform plan -out terraform.plan
+        terraform apply -auto-approve terraform.plan
+      else
+        for dir in gcb/environments/*/
+        do
+          cd ${dir}
+          env=${dir%*/}
+          env=${env#*/}
+          echo ""
+          echo "*************** TERRAFOM PLAN ******************"
+          echo "******* At environment: ${env} ********"
+          echo "*************************************************"
+          terraform init
+          terraform validate
+          terraform plan || exit 1
+          cd ../../
+        done
+      fi

@@ -1,4 +1,0 @@
-variable "intern-infra" {
- type        = string
- description = "GCP project id"
-}
