@@ -6,7 +6,7 @@ steps:
   - '-c'
   - |
       echo "branch $BRANCH_NAME"
-      if [ ! -z "$BRANCH_NAME" -a -d "gcb/environments/$BRANCH_NAME/" ]; then
+      if [ ! -z "$BRANCH_NAME" -a -d "gcb/environments/$BRANCH_NAME ]; then
         cd terraform/environments/$BRANCH_NAME
         echo "run init"
         terraform init
